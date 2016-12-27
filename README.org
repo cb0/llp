@@ -14,7 +14,9 @@
        Because this is not valid in php the `l` function was introduced.
 
        So in llp you need to write:
-       `l('+', 1, 2);`
+       #+BEGIN_SRC php
+       `l('+', 1, 2);`       
+       #+END_SRC
 
     2. As you see in the first example you must quote the operator, `+` in this case.
        Php does not allow you to you just pass `+` operator.
@@ -24,23 +26,34 @@
 ** Examples   
 *** simple stuff
     1. sum of numbers
-       l("+", 1, 2, 3); // => 6
+       #+BEGIN_SRC php
+       l("+", 1, 2, 3); // => 6       
+       #+END_SRC
     2. more math
-       l('+', l('/', 4, 2), 2, 1); // => 5
+       #+BEGIN_SRC php
+       l('+', l('/', 4, 2), 2, 1); // => 5       
+       #+END_SRC
     3. define a variable
-       l('def', 'x', 3);
+       #+BEGIN_SRC php
+       l('def', 'x', 3);       
+       #+END_SRC
     4. write multiple statements
+       #+BEGIN_SRC php
        l('progn',
          l('def', 'x', 3), // define x as 3
          l('def', 'x', l('+', 'x', 2)),// overwrite x with sum of x + 2 
          l('def', 'x', l('*', 2, 'x')),// overwrite x with x^2
          l('-', 'x'); //and finally return -x, which will be -10
-       )
+       )       
+       #+END_SRC
     5. write to output
-       l('print', "Hello World!")
+       #+BEGIN_SRC php
+       l('print', "Hello World!")       
+       #+END_SRC
 
 *** "complex" example 
     What do you think the following code will output ?
+    #+BEGIN_SRC php
     `l(
      'progn',
      l(
@@ -57,7 +70,8 @@
 	 )
      ),
      l('print', 'result')
-    );`
+    );`    
+    #+END_SRC
     Correct, the result will be -100.
     
 
