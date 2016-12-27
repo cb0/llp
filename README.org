@@ -1,0 +1,72 @@
+* lisp like php (llp)
+
+** What is llp
+   `llp` stands for lisp like php.
+   It's a collection of small classes that allows one to write "lisp like" syntax in php.
+   `lisp like` means that the final code looks like lisp but with "a lot of" restrictions. :)
+
+** Note:
+   This version is currently in it's very early alpha stage and may never be finished!!!
+
+*** Restrictions:
+    1. You can't write functions with just plain parentheses.
+       In lisp `(+ 1 2)` would add the numbers 1 and 2. 
+       Because this is not valid in php the `l` function was introduced.
+
+       So in llp you need to write:
+       `l('+', 1, 2);`
+
+    2. As you see in the first example you must quote the operator, `+` in this case.
+       Php does not allow you to you just pass `+` operator.
+
+    3. Currently you can not define custom functions in llp.
+
+** Examples   
+*** simple stuff
+    1. sum of numbers
+       l("+", 1, 2, 3); // => 6
+    2. more math
+       l('+', l('/', 4, 2), 2, 1); // => 5
+    3. define a variable
+       l('def', 'x', 3);
+    4. write multiple statements
+       l('progn',
+         l('def', 'x', 3), // define x as 3
+         l('def', 'x', l('+', 'x', 2)),// overwrite x with sum of x + 2 
+         l('def', 'x', l('*', 2, 'x')),// overwrite x with x^2
+         l('-', 'x'); //and finally return -x, which will be -10
+       )
+    5. write to output
+       l('print', "Hello World!")
+
+*** "complex" example 
+    What do you think the following code will output ?
+    `l(
+     'progn',
+     l(
+	 'def',
+	 'result',
+	 l(
+	     'if',
+	     l(
+		 "!",
+		 l(">", 10, 5)
+	     ),
+	     l('+', 2, 3),
+	     l('-', l('*', 10, 10))
+	 )
+     ),
+     l('print', 'result')
+    );`
+    Correct, the result will be -100.
+    
+
+** Requirements:
+   At least php 5.4
+
+** Q&A
+   Q: Why something like this ?
+   A: I created this for fun and educational purposes.
+
+   Q: This looks ugly and unusable.
+   A: You are correct, this looks ugly, but is can be actual used.
